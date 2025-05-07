@@ -171,18 +171,17 @@
 
     .hero-image {
       min-width: 260px;
-      flex: 1 1 300px;
+      flex: 1 1 500px;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 40px;
     }
     .hero-image img {
-      max-width: 330px;
-      width: 95%;
+      max-width: 50vw;
+      width: 100%;
       border-radius: 24px;
-      box-shadow: 0 0 0 8px #fff, 0 10px 80px #ff750044;
-      background: #eaeaea;
-      filter: drop-shadow(0 0 24px #ff740033);
+      box-shadow: 0 0 64px #ff750066;
       border: 2px solid #fff6e3;
       transition: transform 160ms;
       outline: 2px solid #ffdbb0;
@@ -215,6 +214,7 @@
       margin-left: auto;
       margin-right: auto;
       line-height: 1.75;
+      text-wrap: pretty;
     }
     .feature-grid {
       display: grid;
@@ -409,7 +409,7 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .cta-download {
+    .beta-access-button {
       font-size: 1.13rem;
       background: var(--neon-orange);
       color: #fff;
@@ -423,7 +423,7 @@
       transition: background 0.15s, box-shadow 0.15s;
       cursor: pointer;
     }
-    .cta-download:hover {
+    .beta-access-button:hover {
       background: #ff8a29;
       box-shadow: 0 0 45px #ffbf88cc;
       transform: scale(1.035);
@@ -490,6 +490,86 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 100; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 30px 40px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 80%; /* Could be more or less, depending on screen size */
+      max-width: 500px;
+      box-shadow: 0 10px 60px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.15);
+      position: relative;
+      text-align: left;
+    }
+    .modal-content h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--neon-orange);
+      margin-top: 0;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .modal-content p {
+      margin-bottom: 18px;
+    }
+    .modal-content label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    .modal-content input[type="email"],
+    .modal-content input[type="text"] {
+      width: calc(100% - 24px);
+      padding: 12px;
+      border: 1px solid var(--silver);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: var(--font-display);
+    }
+    .modal-content input[type="checkbox"] {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .modal-content button[type="submit"] {
+      display: block;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .modal-close-button {
+      color: var(--mid-gray);
+      float: right;
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 1;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+
+    .modal-close-button:hover,
+    .modal-close-button:focus {
+      color: var(--dark);
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -510,7 +590,7 @@
         <a href="#features">Features</a>
         <a href="#how">How It Works</a>
         <a href="#compare">Compare</a>
-        <button class="cta-button">Download</button>
+        <button class="cta-button">Get Beta Access</button>
       </nav>
     </div>
   </header>
@@ -525,13 +605,12 @@
         <div class="hero-highlights">
           <span class="hero-badge">Multiple Podcast Formats</span>
           <span class="hero-badge">iOS Exclusive</span>
-          <span class="hero-badge">Tech-Nostalgia Redefined</span>
         </div>
-        <button class="cta-button">Try InternetMixtape</button>
+        <button class="cta-button">Request Beta Access</button>
       </div>
       <div class="hero-image">
         <!-- App icon illustration -->
-        <img src="https://placehold.co/330x330/orange/white?text=App+Preview" style="box-shadow: 0 0 64px #ff750066;" alt="InternetMixtape app showing neon tape cassette"/>
+        <img src="heroimage.jpeg" alt="InternetMixtape app showing neon tape cassette"/>
       </div>
     </section>
 
@@ -587,7 +666,7 @@
               </svg>
             </div>
             <div class="feature-title">Quick Summary</div>
-            <div class="feature-desc">Essential points in 5 minutes. Decide what you want to make time for.</div>
+            <div class="feature-desc">Essential points in 2 minutes. Decide what you want to make time for.</div>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
@@ -662,12 +741,12 @@
               <th>Feature</th>
               <th>InternetMixtape</th>
               <th>NotebookLM</th>
-              <th>ElevenLabs Reader</th>
+              <th>ElevenReader</th>
             </tr>
             <tr>
               <td>Podcast Book Club</td>
               <td class="s-yes">✔︎</td>
-              <td class="s-no">—</td>
+              <td class="s-yes">✔︎</td>
               <td class="s-no">—</td>
             </tr>
             <tr>
@@ -730,7 +809,7 @@
         Break free from information overload.<br/>
         Turn your reading list into a playlist—and keep up with everything, hands-free. 
       </div>
-      <button class="cta-download">Get InternetMixtape for iOS</button>
+      <button class="beta-access-button">Request Beta Access for iOS</button>
     </section>
 
   </main>
@@ -746,10 +825,158 @@
       InternetMixtape
     </div>
     <div class="footer-note">
-      &copy; 2025 InternetMixtape. All rights reserved.<br>
+      <p>&copy; 2025 InternetMixtape. All rights reserved.<br>
       Not affiliated with Substack, Medium, NotebookLM, or ElevenLabs.<br>
-      <span style="color:#ff7500;opacity:0.94">Read less. Experience more.</span>
+      <span style="color:#ff7500;opacity:0.94">Read less. Experience more.</span><br></p>
+      <p>Made with ❤️ in Berlin<br></p>
+      <p><br><a href="#" id="openImprintModal">Imprint</a> | <a href="#" id="openPrivacyModal">Privacy Policy</a></p>
     </div>
   </footer>
+
+  <div id="betaModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-button">&times;</span>
+      <form method="post" action="https://sendfox.com/form/mnwydv/1xdwpz" class="sendfox-form" id="1xdwpz" data-async="true" data-recaptcha="true">
+        <h2>Request Beta Access</h2>
+        <p><label for="sendfox_form_email">Email: </label><input type="email" id="sendfox_form_email" placeholder="Email" name="email" required /></p>
+        <p><label><input type="checkbox" name="gdpr" value="1" required /> I agree to receive email updates and promotions.</label></p>
+        <!-- no botz please -->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
+        <p><button type="submit" class="cta-button">Sign up for Beta Access</button></p>
+      </form>
+      <script src="https://cdn.sendfox.com/js/form.js" charset="utf-8"></script>
+    </div>
+  </div>
+
+  <div id="imprintModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-button">&times;</span>
+      <h2>Imprint</h2>
+      <p>
+        Tobias Treppmann<br>
+        Kleinunternehmer<br>
+        Email: <span id="obfuscatedEmail"></span><br>
+        Phone: <span id="obfuscatedPhone"></span><br>
+        Lückstr. 74<br>
+        10317 Berlin
+      </p>
+    </div>
+  </div>
+
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-button">&times;</span>
+      <h2>Privacy Policy</h2>
+      <p>
+        <strong>1. Data Collection</strong><br>
+        We collect email addresses when you sign up for beta access. This information is used to contact you about the beta program and send promotional updates if you have consented.
+        <br><br>
+        <strong>2. Data Storage</strong><br>
+        Your data is stored securely via our email marketing provider, SendFox.
+        <br><br>
+        <strong>3. Your Rights</strong><br>
+        You have the right to access, rectify, or erase your personal data. You can also withdraw consent for promotional emails at any time.
+        <br><br>
+        <strong>4. Cookies</strong><br>
+        Our sign-up form may use cookies for functionality and security (e.g., reCAPTCHA). We will implement a cookie consent mechanism if non-essential cookies are used.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Get the modals
+    const betaModal = document.getElementById("betaModal");
+    const imprintModal = document.getElementById("imprintModal");
+    const privacyModal = document.getElementById("privacyModal");
+
+    // Get the buttons that open the modals
+    const openBetaModalButtons = document.querySelectorAll(".cta-button, .beta-access-button");
+    const openImprintModalLink = document.getElementById("openImprintModal");
+    const openPrivacyModalLink = document.getElementById("openPrivacyModal");
+
+    // Get all close buttons
+    const closeModalButtons = document.querySelectorAll(".modal-close-button");
+
+    // Function to open a modal
+    function openModal(modal) {
+      if (modal) modal.style.display = "block";
+    }
+
+    // Function to close a modal
+    function closeModal(modal) {
+      if (modal) modal.style.display = "none";
+    }
+
+    // Event listeners for beta modal buttons
+    openBetaModalButtons.forEach(button => {
+      if (!button.closest('.modal-content')) { // Exclude submit button inside beta modal
+        button.addEventListener("click", function(event) {
+          event.preventDefault();
+          openModal(betaModal);
+        });
+      }
+    });
+
+    // Event listener for Imprint link
+    if (openImprintModalLink) {
+      openImprintModalLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        openModal(imprintModal);
+      });
+    }
+
+    // Event listener for Privacy Policy link
+    if (openPrivacyModalLink) {
+      openPrivacyModalLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        openModal(privacyModal);
+      });
+    }
+
+    // Event listeners for all close buttons
+    closeModalButtons.forEach(button => {
+      button.addEventListener("click", function() {
+        // Find the closest parent modal and close it
+        closeModal(this.closest('.modal'));
+      });
+    });
+
+    // When the user clicks anywhere outside of any modal, close it
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        closeModal(event.target);
+      }
+    }
+
+    // Obfuscate and display contact information
+    function displayContactInfo() {
+      const emailUser = "hello";
+      const emailDomain = "treppmann.design";
+      const emailElement = document.getElementById("obfuscatedEmail");
+      if (emailElement) {
+        const emailLink = document.createElement("a");
+        emailLink.href = "mailto:" + emailUser + "@" + emailDomain;
+        emailLink.textContent = emailUser + "@" + emailDomain;
+        emailElement.appendChild(emailLink);
+      }
+
+      const phonePart1 = "+49";
+      const phonePart2 = "159";
+      const phonePart3 = "05030211";
+      const phoneElement = document.getElementById("obfuscatedPhone");
+      if (phoneElement) {
+        const phoneLink = document.createElement("a");
+        const fullPhone = phonePart1 + " " + phonePart2 + " " + phonePart3;
+        phoneLink.href = "tel:" + phonePart1 + phonePart2 + phonePart3; // tel: link should be unformatted
+        phoneLink.textContent = fullPhone;
+        phoneElement.appendChild(phoneLink);
+      }
+    }
+
+    // Call the function to display contact info when the DOM is ready
+    document.addEventListener("DOMContentLoaded", displayContactInfo);
+
+  </script>
+
 </body>
 </html>
